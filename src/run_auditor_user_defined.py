@@ -53,10 +53,12 @@ def solve(args, code):
 
 def run(args):
 
-    if args.get('openai_api_key') is None:
-        openai.api_key = OPENAI_API_KEY
-    else:
-        openai.api_key = args.openai_api_key
+    # if args.get('openai_api_key') is None:
+    #     openai.api_key = OPENAI_API_KEY
+    # else:
+    #     openai.api_key = args.openai_api_key
+    
+    openai.api_key = OPENAI_API_KEY
 
     # log output file
     log_dir = f"./src/logs/auditor_{args.backend}_{args.temperature}_top{args.topk}_{args.num_auditor}"
@@ -92,7 +94,7 @@ def run(args):
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument('--backend', type=str, choices=['gpt-3.5-turbo','gpt-4', 'gpt-4-turbo-preview'], default='gpt-4-turbo-preview')
+    args.add_argument('--backend', type=str, choices=['gpt-3.5-turbo','gpt-4', 'gpt-4-turbo', 'gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano', 'gpt-4.5-preview', 'gpt-4o', 'gpt-4o-mini', 'o1'], default='gpt-4.5-preview')
     args.add_argument('--temperature', type=float, default=0.7)
     args.add_argument('--data_dir', type=str, default="data/CVE_clean")
     args.add_argument('--topk', type=int, default=5) # the topk per each auditor

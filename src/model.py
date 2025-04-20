@@ -5,12 +5,13 @@ from utils import dotdict
 
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY') #"Enter your openai API key"
+
 completion_tokens = 0
 prompt_tokens = 0
 
 def gpt(prompt, model, temperature=0.7, max_tokens=4000, n=1, stop=None) -> list:
     messages = [{"role": "user", "content": prompt}]
-    if model == "gpt-4":
+    if model.startswith("gpt-4"):
         pass
         time.sleep(30) # to prevent speed limitation exception
     return chatgpt(messages, model=model, temperature=temperature, max_tokens=max_tokens, n=n, stop=stop)
